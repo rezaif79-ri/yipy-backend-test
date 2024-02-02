@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -38,14 +39,14 @@ func GenerateSNum(n int) []string {
 	return res
 }
 
-// GetFormatedSNum return slice of string formatted with question 1 requirement format (n * * n)
-func GetFormatedSNum(n int, snum []string) []string {
+// GetFormatedSNum return string formatted with question 1 requirement format (n * * n)
+func GetFormatedSNum(n int, snum []string) string {
 	var res []string
 	if len(snum) > n+2 {
 		res = append(res, snum...)
 		res[n] = "*"
 		res[n+1] = "*"
-		return res
+		return strings.Join(res, "")
 	}
-	return nil
+	return ""
 }
