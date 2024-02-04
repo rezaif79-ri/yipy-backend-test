@@ -31,7 +31,7 @@ func main() {
 
 	var sortSliceInt = func(num []int) []int {
 		for i := 0; i < len(num)-1; i++ {
-			for k := 1; k < len(num); k++ {
+			for k := i + 1; k < len(num); k++ {
 				if num[k] < num[i] {
 					num[k], num[i] = num[i], num[k]
 				}
@@ -51,5 +51,29 @@ func main() {
 		}
 	}
 
-	fmt.Println(orders)
+	// Orders automatically sorted by alphabet, and orders id inside menu has been sorted
+	for i := range orders {
+		fmt.Println(i, ":", orders[i])
+	}
+
+	fmt.Println()
+
+	// Orders need to be sorted by most menu sold
+	var orderMenus []string = make([]string, 0)
+	for key := range orders {
+		orderMenus = append(orderMenus, key)
+	}
+
+	for id := 0; id < len(orderMenus)-1; id++ {
+		for nextId := id + 1; nextId < len(orderMenus); nextId++ {
+			if len(orders[orderMenus[nextId]]) > len(orders[orderMenus[id]]) {
+				orderMenus[id], orderMenus[nextId] = orderMenus[nextId], orderMenus[id]
+			}
+		}
+	}
+
+	for _, v := range orderMenus {
+		fmt.Println(v, ":", orders[v])
+	}
+
 }
